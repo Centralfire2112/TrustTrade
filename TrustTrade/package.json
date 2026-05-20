@@ -1,0 +1,20 @@
+{
+  "name": "trusttrade",
+  "version": "1.0.0",
+  "description": "TrustTrade — AI fraud detection for informal P2P traders in Southern Africa",
+  "scripts": {
+    "install:all": "npm install --prefix client && npm install --prefix desktop",
+    "build:web": "npm run build --prefix client",
+    "start:web": "node server/index.js",
+    "dev:client": "npm run dev --prefix client",
+
+    "desktop": "npm run build:web && cd desktop && npx electron .",
+    "desktop:build:win": "npm run build:web && cd desktop && npx electron-builder --win",
+    "desktop:build:mac": "npm run build:web && cd desktop && npx electron-builder --mac",
+    "desktop:build:linux": "npm run build:web && cd desktop && npx electron-builder --linux",
+
+    "android:init": "npm run build:web && cd client && npx cap add android",
+    "android:sync": "npm run build:web && cd client && npx cap sync android",
+    "android:open": "cd client && npx cap open android"
+  }
+}

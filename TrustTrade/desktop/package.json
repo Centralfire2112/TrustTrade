@@ -1,0 +1,51 @@
+{
+  "name": "trusttrade-desktop",
+  "version": "1.0.0",
+  "description": "TrustTrade Desktop — offline P2P fraud checker for SADC traders",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "icons":     "node scripts/create-icons.js",
+    "prestart":  "node scripts/create-icons.js",
+    "start":     "electron .",
+    "build:win": "node scripts/create-icons.js && electron-builder --win",
+    "build:mac": "node scripts/create-icons.js && electron-builder --mac",
+    "build:linux": "node scripts/create-icons.js && electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.trusttrade.app",
+    "productName": "TrustTrade",
+    "copyright": "Copyright © 2025 TrustTrade",
+    "directories": { "output": "dist-electron" },
+    "files": ["main.js", "preload.js", "build/**"],
+    "extraResources": [
+      { "from": "../client/dist", "to": "client/dist", "filter": ["**/*"] }
+    ],
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "target": [{ "target": "dmg", "arch": ["x64", "arm64"] }],
+      "icon": "build/icon.png",
+      "category": "public.app-category.finance"
+    },
+    "linux": {
+      "target": [{ "target": "AppImage", "arch": ["x64"] }],
+      "icon": "build/icon.png",
+      "category": "Finance"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "TrustTrade",
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}
