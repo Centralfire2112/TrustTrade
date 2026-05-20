@@ -43,7 +43,6 @@ TrustTrade helps peer-to-peer (P2P) traders in the SADC region identify scams be
 | Mobile | Capacitor (Android) |
 | Desktop | Electron |
 | PWA | Vite PWA Plugin |
-| Optional AI | Anthropic Claude API |
 
 ---
 
@@ -122,44 +121,6 @@ TrustTrade/
 ├── deploy.sh                # PM2 production deployment
 └── package.json             # Root build scripts
 ```
-
----
-
-## API
-
-### `POST /api/analyse`
-
-Analyses a transaction and returns a risk assessment.
-
-**Request body:**
-
-```json
-{
-  "contactType": "new",
-  "amount": 2500,
-  "prepaymentPct": 100,
-  "channel": "whatsapp",
-  "urgency": "high",
-  "notes": "Seller says he needs money today only"
-}
-```
-
-**Response:**
-
-```json
-{
-  "score": 82,
-  "level": "HIGH",
-  "label": "Stop — Be Careful",
-  "flags": ["100% upfront payment requested", "High urgency pressure detected"],
-  "recommendation": "Do not proceed. Multiple high-risk signals detected."
-}
-```
-
-### `GET /health`
-
-Returns `200 OK` when the server is running.
-
 ---
 
 ## Deployment
